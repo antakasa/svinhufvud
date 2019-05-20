@@ -1,0 +1,10 @@
+@media (max-width: 600px) {
+    .frontpage-grid-item {
+        width: 90%;
+    }
+
+    .frontpage-grid {
+        margin-top: 10vh;
+
+    }
+}

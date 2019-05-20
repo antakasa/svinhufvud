@@ -1,0 +1,18 @@
+.info-container {
+    width: 100%;
+    max-width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Open sans;
+    padding-bottom: 20px;
+}
+
+.info-links {
+    display: flex;
+}
+
+.info-links h2 {
+    margin-right: 10px;
+    cursor: pointer;
+}

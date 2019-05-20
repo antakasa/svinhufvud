@@ -1,5 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 .App {
-  text-align: center;
+  background: #151515;
+  min-height: 150vh;
+  font-family: Open sans;
+}
+
+a:link {
+  color: white;
+  font-family: Open sans;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: white;
+  font-family: Open sans;
+  text-decoration: underline;
+}
+
+a:active {
+  color: white;
+  font-family: Open sans;
+  text-decoration: none
+}
+
+a:hover {
+  color: orange;
+  font-family: Open sans;
+  text-decoration: none
 }
 
 .App-logo {
