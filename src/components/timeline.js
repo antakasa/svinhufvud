@@ -1,4 +1,5 @@
 import React, { Component, PureComponent } from "react";
+import 'intersection-observer'
 import ScrollTrigger from "react-scroll-trigger";
 import "./timeline.css";
 import { InView } from "react-intersection-observer";
@@ -6,6 +7,8 @@ import senaatti from "../images/senaatti.jpg"
 import itsenaisyysjulistus from "../images/itsenaisyysjulistus.jpg"
 import tyomies from "../images/tyomies.jpg"
 import sitaatti from "../images/sitaatti.jpg"
+import { getPosts, fetchData } from './getData'
+import { isMobile } from 'react-device-detect';
 
 const Header = () =>
   <div className="timeline-header">
@@ -15,28 +18,33 @@ const Header = () =>
 
 const dataArray = [{
     time: "11/1917",
-    text: "Svinhufvudin senaatti",
+    year: "1917",
+    month: "11",
+    header: "Svinhufvudin senaatti",
     chapter: "pääministerinä",
     image: senaatti,
     background: senaatti
   },
   {
-    time: "12/1917",
-    text: "Itsenäisyysjulistus",
+    year: "1917",
+    month: "12",
+    header: "Itsenäisyysjulistus",
     chapter: "pääministerinä",
     image: itsenaisyysjulistus,
     background: itsenaisyysjulistus
   },
   {
-    time: "1/1918",
-    text: "Yö venäläisessä sotalaivassa",
+    year: "1918",
+    month: "1",
+    header: "Yö venäläisessä sotalaivassa",
     chapter: "pääministerinä",
     image: sitaatti,
     background: sitaatti
   },
   {
-    time: "1/1918",
-    text: "Vallankumous 26.tammikuuta",
+    year: "1918",
+    month: "1",
+    header: "Vallankumous 26.tammikuuta",
     chapter: "pääministerinä",
     image: tyomies,
     background: tyomies
@@ -64,11 +72,11 @@ const Item = ({ data, visible, changeVisibility, i }) => (
           <div className="timeline__content">
             <img
               className="timeline__img"
-              src={data.image}
+              src={data.image.sizes.medium}
             />
-            <h2 className="timeline__content-title">{data.time}</h2>
+            <h2 className="timeline__content-title">{data.year}/{data.month}</h2>
             <p className="timeline__content-desc">
-{data.text}
+{data.header}
             </p>
           </div>
         </div>
@@ -77,25 +85,58 @@ const Item = ({ data, visible, changeVisibility, i }) => (
   </InView>
 );
 
+const parseData = data => {
+  let dataArray = [];
+  for (let i = 0; i < data.length; i++) {
+    console.log(data[i].acf)
+    let { chapter, background, date, header, image, month, teksti, year } = data[i].acf
+    if (chapter && header && year && image && month) dataArray.push({ ...data[i].acf,
+      background: background ? background : image,
+      date: ("0" + date).slice(-2)
+    })
+  }
+  return dataArray.sort(compare)
+}
+
+function compare(a, b) {
+  let aDateCombined = parseInt(a.year + a.month + a.date, 10)
+  let bDateCombined = parseInt(b.year + b.month + b.date, 10)
+  if (aDateCombined < bDateCombined) {
+    return -1;
+  }
+  if (aDateCombined > bDateCombined) {
+    return 1;
+  }
+  return 0;
+}
+
 class Timeline extends PureComponent {
   state = { visible: 0 };
 
   currentNumber = { currentNumber: 0 };
 
+  async componentDidMount() {
+    const timelineDataUrl = "http: //www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages"
+    const data = await fetchData(timelineDataUrl)
+    this.setState({
+      data: parseData(data)
+    })
+  }
+
   changeVisibility = i => this.setState({ visible: i });
 
   render() {
-    console.log(`"url(${dataArray[this.state.visible].background})"`)
+    if (!this.state.data) return null
     return (
       <div>
         <div
           className="timeline-container"
           id="timeline-1"
-          style={{backgroundImage: `url(${dataArray[this.state.visible].background})`}}
+          style={{backgroundImage: !isMobile ? `url(${dataArray[this.state.visible].background})` : "inherit"}}
         >
           <div className="timeline">
           <Header />
-            {dataArray.map((e, i) => (
+            {this.state.data.map((e, i) => (
               <Item data={e} key={i} i={i} changeVisibility={this.changeVisibility} />
             ))}
           </div>

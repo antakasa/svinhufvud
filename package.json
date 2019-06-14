@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://s3-eu-west-1.amazonaws.com/antakasa/2019-svinhufvud",
-    "dependencies": {
+  "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "intersection-observer": "^0.7.0",
     "material-ui-icons": "^1.0.0-beta.36",
+    "mobile-detect": "^1.4.3",
     "moment": "^2.24.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
+    "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
     "react-image-timeline": "^1.0.11",
     "react-intersection-observer": "^8.23.0",

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getPosts } from './getData'
+import { getPosts, fetchData } from './getData'
 
 /* global fetch */
 
@@ -8,18 +8,16 @@ class PostList extends Component {
         posts: []
     }
 
-    componentDidMount() {
-        let postUrl = `${getPosts}`;
-        fetch(postUrl)
-            .then(data => data.json())
-            .then(data => {
-                this.setState({
-                    posts: data
-                })
-            })
+    async componentDidMount() {
+        const data = await fetchData()
+        console.log(data)
+        this.setState({
+            posts: data
+        })
     }
 
     render() {
+
         let listposts = this.state.posts.map((post, index) => {
             return (
                 <div key={index}>

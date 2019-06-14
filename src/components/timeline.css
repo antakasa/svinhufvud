@@ -54,7 +54,6 @@
 .timeline-item {
     padding: 40px 0;
     opacity: .3;
-    filter: blur(2px);
     transition: .5s;
     box-sizing: border-box;
     width: calc(50% - 40px);
