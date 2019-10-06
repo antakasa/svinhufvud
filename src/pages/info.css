@@ -1,18 +1,27 @@
 .info-container {
-    width: 100%;
-    max-width: 800px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: Open sans;
-    padding-bottom: 20px;
+  width: 100%;
+  max-width: 50vw;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 20px;
 }
 
 .info-links {
-    display: flex;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.info-links h2 {
-    margin-right: 10px;
-    cursor: pointer;
+.info-links h3 {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.info-links a {
+  text-decoration: none;
+}
+
+.info-links a:hover {
+  color: gray;
 }

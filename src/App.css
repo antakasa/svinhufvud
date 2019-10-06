@@ -1,38 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 body,
 html {
-  background: #151515;
+  background: #fff8e7;
 }
 
 .App {
-  background: #151515;
+  background: #fff8e7;
   min-height: 150vh;
-  font-family: Open sans;
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
 }
 
 a:link {
-  color: white;
-  font-family: Open sans;
   text-decoration: underline;
 }
 
 a:visited {
-  color: white;
-  font-family: Open sans;
   text-decoration: underline;
-}
-
-a:active {
-  color: white;
-  font-family: Open sans;
-  text-decoration: none;
-}
-
-a:hover {
-  color: orange;
-  font-family: Open sans;
-  text-decoration: none;
 }
 
 .App-logo {

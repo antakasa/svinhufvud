@@ -3,15 +3,17 @@ import {fetchData} from '../components/getData';
 import parse from 'html-react-parser';
 import './feature.css';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {getImageDetails, getCaptionText, isValidImage} from './featureHelpers';
+import {
+  getImageDetails,
+  getCaptionText,
+  isValidImage,
+  WpCaption,
+} from './featureHelpers';
+import FrontPageGrid from '../components/frontPageGrid';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
 
 const LazyImage = ({image, caption}) => (
-  <div
-    className={
-      image.mode === 'vaaka'
-        ? 'feature-vaaka-container'
-        : 'feature-pysty-container'
-    }>
+  <div className={image.mode}>
     <LazyLoadImage
       alt={image.alt}
       srcSet={image.srcset}
@@ -21,44 +23,56 @@ const LazyImage = ({image, caption}) => (
       effect="blur"
       src={image.src} // use normal <img> attributes as props
     />
-    <span className="feature-image-caption">{caption}</span>
+    {caption && <span className="feature-image-caption">{caption}</span>}
   </div>
 );
 
-const Feature = ({url}) => {
+const Routes = ({match}) => {
+  return (
+    <Router>
+      <Route path="/feature/:id" component={Feature} />
+    </Router>
+  );
+};
+
+const Feature = ({match}) => {
   const [data, setData] = useState(null);
 
-  console.log(url);
+  const id = match.params.id;
 
+  const url =
+    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/' + id;
   useEffect(() => {
     const data = fetchData(url, setData);
   }, []);
 
   const replaceImages = domNode => {
     if (isValidImage(domNode)) {
-      const captionText = getCaptionText(domNode);
+      const captionText = WpCaption(domNode) ? getCaptionText(domNode) : false;
       const imageDetails = getImageDetails(domNode);
-      if (captionText && imageDetails)
+      if (imageDetails)
         return <LazyImage caption={captionText} image={imageDetails} />;
     }
   };
 
   return (
     <div>
-      {data && (
-        <>
-          <div className="feature-container">
+      <div className="feature-container">
+        {!data && <h3>Pieni hetki. Ladataan...</h3>}
+
+        {data && (
+          <>
             <h1>{parse(data.title.rendered)}</h1>
             <div>
               {parse(data.content.rendered, {
                 replace: replaceImages,
               })}
             </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Feature;
+export default Routes;

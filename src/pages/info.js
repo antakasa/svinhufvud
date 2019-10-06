@@ -1,9 +1,9 @@
-import React from "react"
-import "./info.css"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-const ReactMarkdown = require('react-markdown')
+import React from 'react';
+import './info.css';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+const ReactMarkdown = require('react-markdown');
 
-const hallintoelimet = (url) => `
+const hallintoelimet = url => `
 # Hallintoelimet
 
 P.E. Svinhufvudin muistosäätiö
@@ -91,9 +91,9 @@ Toimittaja Kalle Virtapohja
 
 Filosofian tohtori Maritta Pohls, asiamies, taloudenhoitaja
 
-`
+`;
 
-const saannot = (url) => `
+const saannot = url => `
 # Säännöt
 
 1 §
@@ -194,9 +194,9 @@ Hallintoneuvosto voi muuttaa säätiön sääntöjä hallituksen ehdotuksesta, j
 15 §
 
 Muutoin on noudatettava mitä säätiölaissa säädetään.
-`
+`;
 
-const yleisesittely = (url) => `
+const yleisesittely = url => `
 # P.E. Svinhufvudin muistosäätiö – P.E. Svinhufvuds minnesstiftelse
 
 Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin Pehr Evind Svinhufvudin nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
@@ -235,39 +235,42 @@ Maininkitie 16 D 55, 02320 Espoo
 
 
 
-`
+`;
 
 //      <h3>{match.params.topicId}</h3>
 
-function Topic({ match }) {
+function Topic({match}) {
   let data;
   switch (match.params.topicId) {
-    case "hallintoelimet":
-      data = hallintoelimet
+    case 'hallintoelimet':
+      data = hallintoelimet;
       break;
-    case "saannot":
-      data = saannot
+    case 'saannot':
+      data = saannot;
       break;
     default:
-      data = yleisesittely
-
+      data = yleisesittely;
   }
   return (
     <div>
-     <ReactMarkdown source={data(match.url)} />
-     
+      <ReactMarkdown source={data(match.url)} />
     </div>
   );
 }
 
-const Info = ({ match }) => {
+const Info = ({match}) => {
   return (
-
     <div className="info-container">
-     <div className="info-links"> 
-      <h2><Link to={`${match.url}/yleisesittely`}>Yleisesittely</Link></h2>
-      <h2><Link to={`${match.url}/saannot`}>Säännöt</Link></h2>
-      <h2><Link to={`${match.url}/hallintoelimet`}>Hallinto</Link></h2>
+      <div className="info-links">
+        <h3>
+          <Link to={`${match.url}/yleisesittely`}>Yleisesittely</Link>
+        </h3>
+        <h3>
+          <Link to={`${match.url}/saannot`}>Säännöt</Link>
+        </h3>
+        <h3>
+          <Link to={`${match.url}/hallintoelimet`}>Hallinto</Link>
+        </h3>
       </div>
 
       <Route path={`${match.path}/:topicId`} component={Topic} />
@@ -278,8 +281,6 @@ const Info = ({ match }) => {
       />
     </div>
   );
-}
+};
 
-
-
-export default Info
+export default Info;

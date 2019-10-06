@@ -1,8 +1,8 @@
 .feature-container {
   margin: 30px;
-  max-width: 60vw;
+  max-width: 50vw;
   display: block;
-  color: white;
+  color: black;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
@@ -10,8 +10,27 @@
 
 .feature-container h1 {
   text-align: center;
-  font-size: 2em;
+  font-size: 3em;
   margin-bottom: 50px;
+  font-family: 'Merriweather', serif;
+}
+
+.feature-container h2 {
+  text-align: center;
+  font-size: 2.5em;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 50px;
+}
+
+.feature-container h3 {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 50px;
+}
+
+.feature-container em {
+  font-size: 1em;
 }
 
 .feature-image {
@@ -19,9 +38,9 @@
   height: auto;
 }
 .feature-container iframe {
-  width: 90vw;
+  width: 70vw;
   height: 100vh !important;
-  margin-left: -15vw;
+  margin-left: -10vw;
 }
 
 .feature-pysty-container {
@@ -35,24 +54,38 @@
   align-items: center;
 }
 
+.feature-pysty-container.vasen {
+  float: left;
+}
+
+.feature-pysty-container.right {
+  float: right;
+}
+
+.feature-pysty-container.keskella {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+  width: 100%;
+}
 .feature-pysty-container span {
   display: flex;
   justify-content: center;
 }
 
 .feature-pysty-container span img {
-  max-height: 100vh;
   margin-left: auto;
   margin-right: auto;
   display: block;
   width: auto;
+  max-width: 100%;
 }
 
 .feature-vaaka-container {
   height: auto;
   position: relative;
-  left: -15vw;
-  width: 90vw;
+  left: -10vw;
+  width: 70vw;
   margin-top: 10vh;
   margin-bottom: 10vh;
   display: flex;

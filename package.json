@@ -1,8 +1,8 @@
 {
-  "name": "2019_svinhuvfud",
+  "name": "2019_svinhufvud",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://s3-eu-west-1.amazonaws.com/antakasa/2019-svinhufvud",
+  "homepage": "https://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
@@ -36,17 +36,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:test":
+      "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi-test $npm_package_name"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

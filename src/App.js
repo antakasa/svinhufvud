@@ -16,18 +16,16 @@ class App extends Component {
         <div className="App">
           <Hero />
           <Layout>
-            <Route exact path="/" component={FrontPageGrid} />
+            <Route exact path="/" render={() => <FrontPageGrid frontPage />} />
+            <Route
+              exact
+              path="/feature"
+              render={() => <FrontPageGrid featurePage />}
+            />
+
+            <Route path="/feature/:id" component={Feature} />
             <Route path="/info" component={Info} />
             <Route path="/uskomaton-elama" component={Timeline} />
-            <Route
-              path="/feature"
-              render={props => (
-                <Feature
-                  url="http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/1135"
-                  {...props}
-                />
-              )}
-            />
           </Layout>
         </div>
       </Router>

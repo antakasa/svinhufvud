@@ -70,7 +70,10 @@ const Item = ({data, visible, changeVisibility, i}) => (
           data-text={''}
           ref={ref}>
           <div className="timeline__content">
-            <img className="timeline__img" src={data.image.sizes.medium} />
+            <img
+              className="timeline__img"
+              src={data.image.sizes ? data.image.sizes.medium : data.image}
+            />
             <h2 className="timeline__content-title">
               {data.year}/{data.month}
             </h2>
@@ -119,9 +122,11 @@ class Timeline extends PureComponent {
   async componentDidMount() {
     const timelineDataUrl =
       'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages';
-    const data = await fetchData(timelineDataUrl);
+    //    const data = await fetchData(timelineDataUrl);
+    const data = dataArray;
+    //	  data: parseData(data),
     this.setState({
-      data: parseData(data),
+      data: data,
     });
   }
 

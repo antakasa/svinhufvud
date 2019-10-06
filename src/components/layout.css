@@ -1,7 +1,18 @@
 .layout-container {
-    width: 100%;
-    display: block;
-    color: white;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  display: block;
+  color: color black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.layout-container a {
+  color: black;
+}
+
+.layout-container h1 {
+  text-align: center;
+  font-size: 3em;
+  margin-bottom: 50px;
+  font-family: 'Merriweather', serif;
 }
