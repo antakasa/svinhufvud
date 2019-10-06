@@ -1,62 +1,63 @@
-import React, { Component, PureComponent } from "react";
-import 'intersection-observer'
-import ScrollTrigger from "react-scroll-trigger";
-import "./timeline.css";
-import { InView } from "react-intersection-observer";
-import senaatti from "../images/senaatti.jpg"
-import itsenaisyysjulistus from "../images/itsenaisyysjulistus.jpg"
-import tyomies from "../images/tyomies.jpg"
-import sitaatti from "../images/sitaatti.jpg"
-import { getPosts, fetchData } from './getData'
-import { isMobile } from 'react-device-detect';
+import React, {Component, PureComponent} from 'react';
+import 'intersection-observer';
+import ScrollTrigger from 'react-scroll-trigger';
+import './timeline.css';
+import {InView} from 'react-intersection-observer';
+import senaatti from '../images/senaatti.jpg';
+import itsenaisyysjulistus from '../images/itsenaisyysjulistus.jpg';
+import tyomies from '../images/tyomies.jpg';
+import sitaatti from '../images/sitaatti.jpg';
+import {getPosts, fetchData} from './getData';
+import {isMobile} from 'react-device-detect';
 
-const Header = () =>
+const Header = () => (
   <div className="timeline-header">
-            <h2 className="timeline-header__title">Pehr Evind Svinhufvud</h2>
-            <h3 className="timeline-header__subtitle">Uskomaton elämä</h3>
-          </div>
+    <h2 className="timeline-header__title">Pehr Evind Svinhufvud</h2>
+    <h3 className="timeline-header__subtitle">Uskomaton elämä</h3>
+  </div>
+);
 
-const dataArray = [{
-    time: "11/1917",
-    year: "1917",
-    month: "11",
-    header: "Svinhufvudin senaatti",
-    chapter: "pääministerinä",
+const dataArray = [
+  {
+    time: '11/1917',
+    year: '1917',
+    month: '11',
+    header: 'Svinhufvudin senaatti',
+    chapter: 'pääministerinä',
     image: senaatti,
-    background: senaatti
+    background: senaatti,
   },
   {
-    year: "1917",
-    month: "12",
-    header: "Itsenäisyysjulistus",
-    chapter: "pääministerinä",
+    year: '1917',
+    month: '12',
+    header: 'Itsenäisyysjulistus',
+    chapter: 'pääministerinä',
     image: itsenaisyysjulistus,
-    background: itsenaisyysjulistus
+    background: itsenaisyysjulistus,
   },
   {
-    year: "1918",
-    month: "1",
-    header: "Yö venäläisessä sotalaivassa",
-    chapter: "pääministerinä",
+    year: '1918',
+    month: '1',
+    header: 'Yö venäläisessä sotalaivassa',
+    chapter: 'pääministerinä',
     image: sitaatti,
-    background: sitaatti
+    background: sitaatti,
   },
   {
-    year: "1918",
-    month: "1",
-    header: "Vallankumous 26.tammikuuta",
-    chapter: "pääministerinä",
+    year: '1918',
+    month: '1',
+    header: 'Vallankumous 26.tammikuuta',
+    chapter: 'pääministerinä',
     image: tyomies,
-    background: tyomies
-  }
+    background: tyomies,
+  },
 ];
 
-const Debugger = () => <div className="timeline-debugger"/>
+const Debugger = () => <div className="timeline-debugger" />;
 
-
-const Item = ({ data, visible, changeVisibility, i }) => (
+const Item = ({data, visible, changeVisibility, i}) => (
   <InView threshold={1}>
-    {({ inView, ref }) => {
+    {({inView, ref}) => {
       if (inView) {
         changeVisibility(i);
       }
@@ -64,20 +65,16 @@ const Item = ({ data, visible, changeVisibility, i }) => (
       return (
         <div
           className={
-            inView ? "timeline-item timeline-item--active" : "timeline-item"
+            inView ? 'timeline-item timeline-item--active' : 'timeline-item'
           }
-          data-text={""}
-          ref={ref}
-        >
+          data-text={''}
+          ref={ref}>
           <div className="timeline__content">
-            <img
-              className="timeline__img"
-              src={data.image.sizes.medium}
-            />
-            <h2 className="timeline__content-title">{data.year}/{data.month}</h2>
-            <p className="timeline__content-desc">
-{data.header}
-            </p>
+            <img className="timeline__img" src={data.image.sizes.medium} />
+            <h2 className="timeline__content-title">
+              {data.year}/{data.month}
+            </h2>
+            <p className="timeline__content-desc">{data.header}</p>
           </div>
         </div>
       );
@@ -88,19 +85,23 @@ const Item = ({ data, visible, changeVisibility, i }) => (
 const parseData = data => {
   let dataArray = [];
   for (let i = 0; i < data.length; i++) {
-    console.log(data[i].acf)
-    let { chapter, background, date, header, image, month, teksti, year } = data[i].acf
-    if (chapter && header && year && image && month) dataArray.push({ ...data[i].acf,
-      background: background ? background : image,
-      date: ("0" + date).slice(-2)
-    })
+    console.log(data[i].acf);
+    let {chapter, background, date, header, image, month, teksti, year} = data[
+      i
+    ].acf;
+    if (chapter && header && year && image && month)
+      dataArray.push({
+        ...data[i].acf,
+        background: background ? background : image,
+        date: ('0' + date).slice(-2),
+      });
   }
-  return dataArray.sort(compare)
-}
+  return dataArray.sort(compare);
+};
 
 function compare(a, b) {
-  let aDateCombined = parseInt(a.year + a.month + a.date, 10)
-  let bDateCombined = parseInt(b.year + b.month + b.date, 10)
+  let aDateCombined = parseInt(a.year + a.month + a.date, 10);
+  let bDateCombined = parseInt(b.year + b.month + b.date, 10);
   if (aDateCombined < bDateCombined) {
     return -1;
   }
@@ -111,33 +112,42 @@ function compare(a, b) {
 }
 
 class Timeline extends PureComponent {
-  state = { visible: 0 };
+  state = {visible: 0};
 
-  currentNumber = { currentNumber: 0 };
+  currentNumber = {currentNumber: 0};
 
   async componentDidMount() {
-    const timelineDataUrl = "http: //www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages"
-    const data = await fetchData(timelineDataUrl)
+    const timelineDataUrl =
+      'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages';
+    const data = await fetchData(timelineDataUrl);
     this.setState({
-      data: parseData(data)
-    })
+      data: parseData(data),
+    });
   }
 
-  changeVisibility = i => this.setState({ visible: i });
+  changeVisibility = i => this.setState({visible: i});
 
   render() {
-    if (!this.state.data) return null
+    if (!this.state.data) return null;
     return (
       <div>
         <div
           className="timeline-container"
           id="timeline-1"
-          style={{backgroundImage: !isMobile ? `url(${dataArray[this.state.visible].background})` : "inherit"}}
-        >
+          style={{
+            backgroundImage: !isMobile
+              ? `url(${dataArray[this.state.visible].background})`
+              : 'inherit',
+          }}>
           <div className="timeline">
-          <Header />
+            <Header />
             {this.state.data.map((e, i) => (
-              <Item data={e} key={i} i={i} changeVisibility={this.changeVisibility} />
+              <Item
+                data={e}
+                key={i}
+                i={i}
+                changeVisibility={this.changeVisibility}
+              />
             ))}
           </div>
         </div>
