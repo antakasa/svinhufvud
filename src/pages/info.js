@@ -96,15 +96,15 @@ Filosofian tohtori Maritta Pohls, asiamies, taloudenhoitaja
 const saannot = url => `
 # Säännöt
 
-1 §
+**1 §**
 
 Säätiön nimi on ”P.E. Svinhufvudin muistosäätiö – P.E. Svinhufvuds minnesstiftelse” ja sen kotipaikka on Helsingin kaupunki. Säätiö on kaksikielinen.
 
-2 §
+**2 §**
 
 Säätiön tarkoituksena on vaalia ja kehittää kansamme keskuudessa isänmaallisia perinteitä ja niissä merkeissä säilyttää P.E. Svinhufvudin muisto ja elämäntyö jälkipolville.
 
-3 §
+**3 §**
 
 Tarkoituksensa toteuttamiseksi säätiö mm.:
 
@@ -115,7 +115,7 @@ Tarkoituksensa toteuttamiseksi säätiö mm.:
 -   ja vaalii muullakin arvokkaalla tavalla hänen muistonsa säilyttämistä tuleville sukupolville.
     
 
-4 §
+**4 §**
 
 Säätiön peruspääomana, jota ei saa vähentää, on säädekirjassa mainittu 500.000 vanhan markan suuruinen pohjarahasto.
 
@@ -123,7 +123,7 @@ Säätiö on oikeutettu vastaanottamaan lahjoja, testamentteja ja avustuksia sek
 
 Säätiö voi myös hankkia ja omistaa kiinteistöjä.
 
-5 §
+**5 §**
 
 Säätiöllä on kaksi toimielintä: hallintoneuvosto ja hallitus. Neuvosto täydentää itseään.
 
@@ -139,7 +139,7 @@ Kuusi hallituksen jäsentä valitaan kolmeksi vuodeksi kerrallaan yhden kolmasos
 
 Hallituksen puheenjohtajan tai jäsenen erotessa tai kuollessa hänen tilalleen voidaan valita uusi henkilö jäljellä olevaksi toimikaudeksi.
 
-6 §
+**6 §**
 
 Hallintoneuvosto kokoontuu varsinaiseen kokoukseen vuosittain 15. joulukuuta tai sitä lähellä olevana, hallituksen määräämänä päivänä ja valitsee siinä erovuoroisten tilalle hallintoneuvoston puheenjohtajan ja kaksi varapuheenjohtajaa, hallintoneuvoston jäsenet, hallituksen puheenjohtajan ja jäsenet sekä vuosittain tilintarkastajan ja varatilintarkastajan. Vuosittain voidaan lisäksi valita uusia hallintoneuvoston jäseniä, jos sen jäsenistön enimmäismäärä ei ylity.
 
@@ -147,19 +147,19 @@ Kokouksessa esitetään vuosikertomus, tilinpäätös ja tilintarkastajan lausun
 
 Tarpeen vaatiessa voidaan pitää ylimääräisiä hallintoneuvoston kokouksia.
 
-7 §
+**7 §**
 
 Kutsun hallintoneuvoston kokoukseen toimittaa hallituksen puheenjohtaja tai hänen estyneenä ollessaan varapuheenjohtaja kirjeellisesti kullekin jäsenelle vähintään kaksi viikkoa ennen kokousta. Kutsussa on mainittava kaikki kokouksessa esille tulevat asiat.
 
 Muut tiedonannot hallintoneuvoston jäsenille toimitetaan samalla tavalla tai sähköpostilla.
 
-8 §
+**8 §**
 
 Hallintoneuvosto on päätösvaltainen, kun sen jäsenistä vähintään puolet, puheenjohtaja tai hänen estyneenä ollessaan jompikumpi varapuheenjohtaja mukaan luettuna, on saapuvilla.
 
 Hallintoneuvostossa on jokaisella jäsenellä yksi ääni. Äänten mennessä tasan ratkaisee puheenjohtajan ääni, vaaleissa kuitenkin arpa.
 
-9 §
+**9 §**
 
 Hallitus edustaa säätiötä ja hoitaa sen asiat.
 
@@ -171,39 +171,40 @@ Kutsun hallituksen kokoukseen toimittaa sähköpostilla tai kirjeellisesti halli
 
 Hallitus valitsee säätiölle sihteerin ja taloudenhoitajan sekä muut tarpeelliset toimihenkilöt. He voivat olla saman aikaisesti hallituksen jäseniä.
 
-10 §
+**10 §**
 
 Säätiön nimen kirjoittavat hallituksen puheenjohtaja tai hänen estyneenä ollessaan varapuheenjohtaja, sihteeri ja taloudenhoitaja, aina kaksi yhdessä.
 
-11 §
+**11 §**
 
 Säätiö ei suorita kokouspalkkiota, matkakulut kuitenkin korvataan.
 
-12 §
+**12 §**
 
 Säätiön tilit päätetään toimintavuosittain. Tilit on marraskuussa annettava tilintarkastajalle, jolle suoritetaan palkkio laskun mukaan.
 
-13 §
+**13 §**
 
 Säätiön toimintakertomus, jäljennös tilinpäätöksestä ja tilintarkastajan lausunnosta on vuosittain lähetettävä patentti- ja rekisterihallitukselle ennen helmikuun loppua.
 
-14 §
+**14 §**
 
 Hallintoneuvosto voi muuttaa säätiön sääntöjä hallituksen ehdotuksesta, joka on lähetettävä kokouskutsun mukana. Muutos astuu voimaan patentti- ja rekisterihallituksen vahvistettua sen.
 
-15 §
+**15 §**
 
 Muutoin on noudatettava mitä säätiölaissa säädetään.
 `;
 
 const yleisesittely = url => `
-# P.E. Svinhufvudin muistosäätiö – P.E. Svinhufvuds minnesstiftelse
+# P.E. Svinhufvudin muistosäätiö
+## P.E. Svinhufvuds minnesstiftelse
 
-Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin Pehr Evind Svinhufvudin nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
+Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin **Pehr Evind Svinhufvudin** nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
 
 Säätiö rekisteröitiin 5.5.1955. Sen tehtävänä on sääntöjen mukaan ”vaalia ja kehittää kansamme keskuudessa isänmaallisia perinteitä ja niissä merkeissä säilyttää P.E. Svinhufvudin muisto ja elämäntyö jälkipolville”. 
 
-Säätiön ensimmäisiä tavoitteita olivat akateemikko Wäinö Aaltosen toteuttaman muistopatsaan pystyttäminen eduskuntatalon eteen ja professori Einar W. Juvan laatiman elämäkerran julkaiseminen. Sittemmin säätiö mm. järjesti teiniseminaareja, joissa asiantuntijat esittelivät Suomen itsenäistymistä ja muuta lähihistoriaa.
+Säätiön ensimmäisiä tavoitteita olivat akateemikko **Wäinö Aaltosen** toteuttaman muistopatsaan pystyttäminen eduskuntatalon eteen ja professori **Einar W. Juvan ** laatiman elämäkerran julkaiseminen. Sittemmin säätiö mm. järjesti teiniseminaareja, joissa asiantuntijat esittelivät Suomen itsenäistymistä ja muuta lähihistoriaa.
 
 Vuosina 2017–2018 säätiön toiminnassa korostuivat Suomen itsenäistymisen satavuotisuus, P. E. Svinhufvudin uuden elämäkerran julkistaminen sekä valmistautuminen [Kotkaniemen](http://www.kotkaniemi.fi/) uudelleen avautumiseen peruskorjauksen jälkeen.
 
@@ -211,7 +212,7 @@ Säätiö järjestää perinteisen 15.12. vietettävän vuosijuhlan ohella myös
 
 Säätiö jakaa vuosittain palkinnon ”Ukko-Pekan hengessä”. Säätiö tukee ja pyrkii käynnistämään Svinhufvudia ja hänen arvomaailmaansa koskevaa tutkimusta, kirjallisuutta ja verkkoaineistoa.
 
-Säätiön hallintoneuvoston puheenjohtajana on toimitusjohtaja Jyri Häkämies ja hallituksen puheenjohtajana professori Martti Häikiö.  Asiamiehenä ja taloudenhoitajana toimii filosofian tohtori Maritta Pohls. Säätiöllä on yhteistyötä mm. Svinhufvud af Qualstadt -sukuyhdistyksen kanssa. Sen puheenjohtajana on suvun päämies, varatuomari Eino Svinhufvud.  
+Säätiön hallintoneuvoston puheenjohtajana on toimitusjohtaja **Jyri Häkämies** ja hallituksen puheenjohtajana professori **Martti Häikiö**.  Asiamiehenä ja taloudenhoitajana toimii filosofian tohtori **Maritta Pohls**. Säätiöllä on yhteistyötä mm. Svinhufvud af Qualstadt -sukuyhdistyksen kanssa. Sen puheenjohtajana on suvun päämies, varatuomari **Eino Svinhufvud**.  
 
 # Yhteystiedot
 

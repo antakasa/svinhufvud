@@ -30,21 +30,25 @@
     "react-scrollama": "^1.0.2",
     "react-vertical-timeline-component": "^2.3.1",
     "react-wow": "^1.0.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "video-react": "^0.14.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:test":
-      "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi-test $npm_package_name"
+    "deploy:test": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi-test $npm_package_name"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

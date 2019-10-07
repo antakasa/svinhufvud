@@ -9,6 +9,10 @@ import oikeuslaitos from '../images/oikeuslaitos.png';
 import pidatys from '../images/svinhufvudin_pidatys.png';
 import {Link} from 'react-router-dom';
 import svinhufvudLakimiehena from '../images/svinhufvud_lakimiehena.png';
+import video from '../videos/etusivu.mp4';
+import {Player} from 'video-react';
+import '../../node_modules/video-react/dist/video-react.css';
+import poster from '../videos/etusivu_poster.jpg';
 const Container = posed.div({
   open: {
     x: '0%',
@@ -38,10 +42,10 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const frontPageContent = (
     <>
-      <Link {...linkProps} to="/uskomaton-elama">
+      <Link {...linkProps} to="/">
         <Item {...itemProps} src={uskomatonElama} />
       </Link>
-      <a {...linkProps} href="http://www.kotkaniemi.fi">
+      <a {...linkProps} target="_blank" href="http://www.kotkaniemi.fi">
         <Item {...itemProps} src={kk} />
       </a>
       <Link {...linkProps} to="/info">
@@ -50,6 +54,10 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
       <Link {...linkProps} to="/feature">
         <Item {...itemProps} src={svinhufvudLakimiehena} />
       </Link>
+
+      <div style={{marginTop: '40px', width: '100%'}}>
+        <Player playsInline poster={poster} src={video} />
+      </div>
     </>
   );
 

@@ -9,13 +9,18 @@
 
 .info-links {
   display: flex;
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  justify-content: center;
+  text-transform: uppercase;
 }
 
 .info-links h3 {
   margin-right: 10px;
   cursor: pointer;
+}
+
+.info-container h2 {
+  text-align: center;
 }
 
 .info-links a {
