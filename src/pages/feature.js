@@ -54,7 +54,6 @@ const Feature = ({match}) => {
         return <LazyImage caption={captionText} image={imageDetails} />;
     }
   };
-
   return (
     <div>
       <div className="feature-container">
@@ -64,7 +63,7 @@ const Feature = ({match}) => {
           <>
             <h1>{parse(data.title.rendered)}</h1>
             <div>
-              {parse(data.content.rendered, {
+              {parse(data.content.rendered.replace(/\s/g, ' '), {
                 replace: replaceImages,
               })}
             </div>

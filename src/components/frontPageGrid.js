@@ -42,7 +42,7 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const frontPageContent = (
     <>
-      <Link {...linkProps} to="/">
+      <Link {...linkProps} to="/uskomaton-elama">
         <Item {...itemProps} src={uskomatonElama} />
       </Link>
       <a {...linkProps} target="_blank" href="http://www.kotkaniemi.fi">
@@ -63,11 +63,11 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const featurePageContent = (
     <>
-      <Link {...linkProps} to="/feature/1135">
-        <Item {...itemProps} src={oikeuslaitos} />
-      </Link>
       <Link {...linkProps} to="/feature/1161">
         <Item {...itemProps} src={pidatys} />
+      </Link>
+      <Link {...linkProps} to="/feature/1135">
+        <Item {...itemProps} src={oikeuslaitos} />
       </Link>
     </>
   );

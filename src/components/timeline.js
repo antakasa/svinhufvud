@@ -9,11 +9,18 @@ import tyomies from '../images/tyomies.jpg';
 import sitaatti from '../images/sitaatti.jpg';
 import {getPosts, fetchData} from './getData';
 import {isMobile} from 'react-device-detect';
+import HTMLParse from 'html-react-parser';
+const SubHeader = ({text}) => (
+  <div className="timeline-subheader">
+    <h2>{text}</h2>
+  </div>
+);
 
 const Header = () => (
   <div className="timeline-header">
-    <h2 className="timeline-header__title">Pehr Evind Svinhufvud</h2>
-    <h3 className="timeline-header__subtitle">Uskomaton elämä</h3>
+    <h1 style={{marginBottom: '10px'}}>
+      Pehr Evind Svinhufvud - Uskomaton elämä
+    </h1>
   </div>
 );
 
@@ -25,15 +32,15 @@ const dataArray = [
     header: 'Svinhufvudin senaatti',
     chapter: 'pääministerinä',
     image: senaatti,
-    background: senaatti,
+    bucket: 'a',
   },
   {
     year: '1917',
     month: '12',
-    header: 'Itsenäisyysjulistus',
+    header: 'Itsenäisyysjulistus lorem ipsum dolor sit amet',
     chapter: 'pääministerinä',
     image: itsenaisyysjulistus,
-    background: itsenaisyysjulistus,
+    bucket: 'a',
   },
   {
     year: '1918',
@@ -41,7 +48,7 @@ const dataArray = [
     header: 'Yö venäläisessä sotalaivassa',
     chapter: 'pääministerinä',
     image: sitaatti,
-    background: sitaatti,
+    bucket: 'b',
   },
   {
     year: '1918',
@@ -49,53 +56,41 @@ const dataArray = [
     header: 'Vallankumous 26.tammikuuta',
     chapter: 'pääministerinä',
     image: tyomies,
-    background: tyomies,
+    bucket: 'b',
   },
 ];
 
-const Debugger = () => <div className="timeline-debugger" />;
+const splitToBuckets = data =>
+  data.reduce(function(buckets, item) {
+    if (!buckets[item.bucket]) buckets[item.bucket] = [];
+    buckets[item.bucket].push(item);
+    return buckets;
+  }, {});
 
-const Item = ({data, visible, changeVisibility, i}) => (
-  <InView threshold={1}>
-    {({inView, ref}) => {
-      if (inView) {
-        changeVisibility(i);
-      }
-
-      return (
-        <div
-          className={
-            inView ? 'timeline-item timeline-item--active' : 'timeline-item'
-          }
-          data-text={''}
-          ref={ref}>
-          <div className="timeline__content">
-            <img
-              className="timeline__img"
-              src={data.image.sizes ? data.image.sizes.medium : data.image}
-            />
-            <h2 className="timeline__content-title">
-              {data.year}/{data.month}
-            </h2>
-            <p className="timeline__content-desc">{data.header}</p>
-          </div>
-        </div>
-      );
-    }}
-  </InView>
+const Item = ({data}) => (
+  <div className={'timeline-item'} data-text={''}>
+    <div className="timeline__content">
+      <img
+        className="timeline__img"
+        src={data.image.sizes ? data.image.sizes.medium : data.image}
+      />
+      <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
+        {data.year}/{data.month}
+      </h3>
+      <p className="timeline__desc">{data.header}</p>
+      <div className="timeline__text">{HTMLParse(data.teksti)}</div>
+    </div>
+  </div>
 );
 
 const parseData = data => {
   let dataArray = [];
   for (let i = 0; i < data.length; i++) {
     console.log(data[i].acf);
-    let {chapter, background, date, header, image, month, teksti, year} = data[
-      i
-    ].acf;
-    if (chapter && header && year && image && month)
+    let {bucket, date, header, image, month, teksti, year} = data[i].acf;
+    if (header && year && image && month && bucket)
       dataArray.push({
         ...data[i].acf,
-        background: background ? background : image,
         date: ('0' + date).slice(-2),
       });
   }
@@ -122,11 +117,11 @@ class Timeline extends PureComponent {
   async componentDidMount() {
     const timelineDataUrl =
       'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages';
-    //    const data = await fetchData(timelineDataUrl);
-    const data = dataArray;
-    //	  data: parseData(data),
+    const data = await fetchData(timelineDataUrl);
+    const parsed = parseData(data);
+    console.log(splitToBuckets(parsed));
     this.setState({
-      data: data,
+      data: splitToBuckets(parsed),
     });
   }
 
@@ -136,24 +131,17 @@ class Timeline extends PureComponent {
     if (!this.state.data) return null;
     return (
       <div>
-        <div
-          className="timeline-container"
-          id="timeline-1"
-          style={{
-            backgroundImage: !isMobile
-              ? `url(${dataArray[this.state.visible].background})`
-              : 'inherit',
-          }}>
+        <div className="timeline-container" id="timeline-1">
           <div className="timeline">
             <Header />
-            {this.state.data.map((e, i) => (
-              <Item
-                data={e}
-                key={i}
-                i={i}
-                changeVisibility={this.changeVisibility}
-              />
-            ))}
+            {Object.entries(this.state.data).map((t, k) => {
+              return (
+                <>
+                  <SubHeader text={t[0]} />
+                  {t[1].map((e, i) => <Item data={e} key={i} i={i} />)}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>

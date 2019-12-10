@@ -7,6 +7,19 @@
   padding-bottom: 20px;
 }
 
+.info-container img {
+  height: auto;
+  position: relative;
+  left: -10vw;
+  width: 70vw;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .info-links {
   display: flex;
   width: 100%;

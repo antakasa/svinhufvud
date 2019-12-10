@@ -8,27 +8,6 @@
   margin-bottom: 50px;
 }
 
-.feature-container h1 {
-  text-align: center;
-  font-size: 3em;
-  margin-bottom: 50px;
-  font-family: 'Merriweather', serif;
-}
-
-.feature-container h2 {
-  text-align: center;
-  font-size: 2.5em;
-  font-family: 'Merriweather', serif;
-  margin-bottom: 50px;
-}
-
-.feature-container h3 {
-  text-align: center;
-  font-size: 1.5em;
-  font-family: 'Merriweather', serif;
-  margin-bottom: 50px;
-}
-
 .feature-container em {
   font-size: 1em;
 }
@@ -102,4 +81,19 @@
 .feature-image-caption {
   font-size: smaller;
   text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .feature-container {
+    max-width: 92vw;
+  }
+
+  .feature-vaaka-container {
+    left: 0;
+    width: 92vw;
+  }
+  .feature-container iframe {
+    width: 92vw;
+    margin-left: 0;
+  }
 }

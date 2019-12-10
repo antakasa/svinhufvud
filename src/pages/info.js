@@ -1,6 +1,7 @@
 import React from 'react';
 import './info.css';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import vaakuna from '../images/vaakuna.jpg';
 const ReactMarkdown = require('react-markdown');
 
 const hallintoelimet = url => `
@@ -200,6 +201,8 @@ const yleisesittely = url => `
 # P.E. Svinhufvudin muistosäätiö
 ## P.E. Svinhufvuds minnesstiftelse
 
+![alt text](${vaakuna}) 
+
 Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin **Pehr Evind Svinhufvudin** nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
 
 Säätiö rekisteröitiin 5.5.1955. Sen tehtävänä on sääntöjen mukaan ”vaalia ja kehittää kansamme keskuudessa isänmaallisia perinteitä ja niissä merkeissä säilyttää P.E. Svinhufvudin muisto ja elämäntyö jälkipolville”. 
@@ -214,7 +217,7 @@ Säätiö jakaa vuosittain palkinnon ”Ukko-Pekan hengessä”. Säätiö tukee
 
 Säätiön hallintoneuvoston puheenjohtajana on toimitusjohtaja **Jyri Häkämies** ja hallituksen puheenjohtajana professori **Martti Häikiö**.  Asiamiehenä ja taloudenhoitajana toimii filosofian tohtori **Maritta Pohls**. Säätiöllä on yhteistyötä mm. Svinhufvud af Qualstadt -sukuyhdistyksen kanssa. Sen puheenjohtajana on suvun päämies, varatuomari **Eino Svinhufvud**.  
 
-# Yhteystiedot
+### Yhteystiedot
 
 Puheenjohtaja professori Martti Häikiö
 
