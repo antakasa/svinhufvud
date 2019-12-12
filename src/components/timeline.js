@@ -86,9 +86,8 @@ const Item = ({data}) => (
 const parseData = data => {
   let dataArray = [];
   for (let i = 0; i < data.length; i++) {
-    console.log(data[i].acf);
     let {bucket, date, header, image, month, teksti, year} = data[i].acf;
-    if (header && year && image && month && bucket)
+    if (year && month && bucket && teksti)
       dataArray.push({
         ...data[i].acf,
         date: ('0' + date).slice(-2),
@@ -116,9 +115,10 @@ class Timeline extends PureComponent {
 
   async componentDidMount() {
     const timelineDataUrl =
-      'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages';
+      'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
     const data = await fetchData(timelineDataUrl);
     const parsed = parseData(data);
+    console.log(parsed);
     console.log(splitToBuckets(parsed));
     this.setState({
       data: splitToBuckets(parsed),
