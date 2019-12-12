@@ -5,14 +5,19 @@ import Timeline from './components/timeline';
 import Layout from './components/layout';
 import FrontPageGrid from './components/frontPageGrid';
 import './mobilestyles.css';
-import {HashRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Hero from './components/hero';
 import Info from './pages/info';
 import Feature from './pages/feature';
+
+const NoMatchPage = () => {
+  return <h3>404 - Not found</h3>;
+};
+
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={'/v2'}>
         <div className="App">
           <Hero />
           <Layout>
@@ -26,6 +31,7 @@ class App extends Component {
             <Route path="/feature/:id" component={Feature} />
             <Route path="/info" component={Info} />
             <Route path="/uskomaton-elama" component={Timeline} />
+            <Route component={NoMatchPage} />
           </Layout>
         </div>
       </Router>

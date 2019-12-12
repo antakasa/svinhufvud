@@ -1,8 +1,8 @@
 {
-  "name": "2019_svinhufvud",
+  "name": "2019_svinhufvud2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud",
+  "homepage": "https://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud2",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
@@ -35,7 +35,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "postbuild": "react-snap",
+    "build": "PUBLIC_URL=http://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud2 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy:test": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi-test $npm_package_name"
@@ -44,15 +45,14 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-snap": "^1.23.0"
   }
 }

@@ -10,16 +10,17 @@ import sitaatti from '../images/sitaatti.jpg';
 import {getPosts, fetchData} from './getData';
 import {isMobile} from 'react-device-detect';
 import HTMLParse from 'html-react-parser';
+import Loading from './loading';
 const SubHeader = ({text}) => (
-  <div className="timeline-subheader">
+  <section className="timeline-subheader">
     <h2>{text}</h2>
-  </div>
+  </section>
 );
 
 const Header = () => (
   <div className="timeline-header">
-    <h1 style={{marginBottom: '10px'}}>
-      Pehr Evind Svinhufvud - Uskomaton elämä
+    <h1 style={{marginBottom: '10px', textTransform: 'uppercase'}}>
+      Pehr Evind Svinhufvudin uskomaton elämä
     </h1>
   </div>
 );
@@ -70,10 +71,12 @@ const splitToBuckets = data =>
 const Item = ({data}) => (
   <div className={'timeline-item'} data-text={''}>
     <div className="timeline__content">
-      <img
-        className="timeline__img"
-        src={data.image.sizes ? data.image.sizes.medium : data.image}
-      />
+      {data.image && (
+        <img
+          className="timeline__img"
+          src={data.image.sizes ? data.image.sizes.medium : data.image}
+        />
+      )}
       <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
         {data.year}/{data.month}
       </h3>
@@ -138,7 +141,9 @@ class Timeline extends PureComponent {
               return (
                 <>
                   <SubHeader text={t[0]} />
-                  {t[1].map((e, i) => <Item data={e} key={i} i={i} />)}
+                  {t[1].map((e, i) => (
+                    <Item data={e} key={i} i={i} />
+                  ))}
                 </>
               );
             })}

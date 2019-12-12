@@ -5,6 +5,7 @@
   flex-direction: column;
   max-width: 700px;
   position: relative;
+  padding: 10px;
 }
 
 .timeline__date {
@@ -39,6 +40,7 @@
 .timeline__text img {
   max-width: 90%;
   padding: 10px;
+  border: 1px solid #7e6c86;
   height: auto;
 }
 
@@ -49,7 +51,7 @@
   height: calc(100%);
   margin-left: -1px;
   content: '';
-  background: #efa9ef;
+  background: #7e6c86;
 }
 
 @media only screen and (max-width: 767px) {
@@ -81,7 +83,7 @@
   right: calc(-100% - 56px);
 }
 
-.timeline-item:nth-child(even) {
+.timeline-item:nth-of-type(even) {
   align-self: flex-end;
 }
 
@@ -117,6 +119,7 @@
 .timeline__img {
   max-width: 100%;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+  border: 5px solid #7e6c86;
 }
 
 .timeline-container {

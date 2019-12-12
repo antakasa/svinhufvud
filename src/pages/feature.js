@@ -10,7 +10,7 @@ import {
   WpCaption,
 } from './featureHelpers';
 import FrontPageGrid from '../components/frontPageGrid';
-import {HashRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 const LazyImage = ({image, caption}) => (
   <div className={image.mode}>

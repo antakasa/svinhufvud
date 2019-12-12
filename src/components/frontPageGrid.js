@@ -90,9 +90,6 @@ class Grid extends React.Component {
   render() {
     return (
       <>
-        {!this.state.open && (
-          <h3 style={{textAlign: 'center'}}>Pieni hetki. Ladataan...</h3>
-        )}
         <Container
           pose={this.state.open ? 'open' : 'closed'}
           className="frontpage-grid">
