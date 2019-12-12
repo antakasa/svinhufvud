@@ -1,6 +1,7 @@
 .info-container {
   width: 100%;
-  max-width: 50vw;
+  max-width: 700px;
+  padding: 10px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -10,10 +11,9 @@
 .info-container img {
   height: auto;
   position: relative;
-  left: -10vw;
-  width: 70vw;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  width: 100%;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,14 +22,19 @@
 
 .info-links {
   display: flex;
-  width: 100%;
-  justify-content: center;
+  /* max-width: 500px; */
+  justify-content: flex-start;
   text-transform: uppercase;
+  margin-bottom: 30px;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  text-decoration: underline;
 }
 
 .info-links h3 {
   margin-right: 10px;
   cursor: pointer;
+  margin: 10px;
 }
 
 .info-container h2 {

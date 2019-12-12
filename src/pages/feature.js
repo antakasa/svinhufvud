@@ -74,4 +74,4 @@ const Feature = ({match}) => {
   );
 };
 
-export default Routes;
+export default Feature;

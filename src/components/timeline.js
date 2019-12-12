@@ -11,6 +11,7 @@ import {getPosts, fetchData} from './getData';
 import {isMobile} from 'react-device-detect';
 import HTMLParse from 'html-react-parser';
 import Loading from './loading';
+import {Helmet} from 'react-helmet';
 const SubHeader = ({text}) => (
   <section className="timeline-subheader">
     <h2>{text}</h2>
@@ -25,41 +26,41 @@ const Header = () => (
   </div>
 );
 
-const dataArray = [
-  {
-    time: '11/1917',
-    year: '1917',
-    month: '11',
-    header: 'Svinhufvudin senaatti',
-    chapter: 'pääministerinä',
-    image: senaatti,
-    bucket: 'a',
-  },
-  {
-    year: '1917',
-    month: '12',
-    header: 'Itsenäisyysjulistus lorem ipsum dolor sit amet',
-    chapter: 'pääministerinä',
-    image: itsenaisyysjulistus,
-    bucket: 'a',
-  },
-  {
-    year: '1918',
-    month: '1',
-    header: 'Yö venäläisessä sotalaivassa',
-    chapter: 'pääministerinä',
-    image: sitaatti,
-    bucket: 'b',
-  },
-  {
-    year: '1918',
-    month: '1',
-    header: 'Vallankumous 26.tammikuuta',
-    chapter: 'pääministerinä',
-    image: tyomies,
-    bucket: 'b',
-  },
-];
+//const dataArray = [
+//{
+//time: '11/1917',
+//year: '1917',
+//month: '11',
+//header: 'Svinhufvudin senaatti',
+//chapter: 'pääministerinä',
+//image: senaatti,
+//bucket: 'a',
+//},
+//{
+//year: '1917',
+//month: '12',
+//header: 'Itsenäisyysjulistus lorem ipsum dolor sit amet',
+//chapter: 'pääministerinä',
+//image: itsenaisyysjulistus,
+//bucket: 'a',
+//},
+//{
+//year: '1918',
+//month: '1',
+//header: 'Yö venäläisessä sotalaivassa',
+//chapter: 'pääministerinä',
+//image: sitaatti,
+//bucket: 'b',
+//},
+//{
+//year: '1918',
+//month: '1',
+//header: 'Vallankumous 26.tammikuuta',
+//chapter: 'pääministerinä',
+//image: tyomies,
+//bucket: 'b',
+//},
+//];
 
 const splitToBuckets = data =>
   data.reduce(function(buckets, item) {
@@ -77,10 +78,15 @@ const Item = ({data}) => (
           src={data.image.sizes ? data.image.sizes.medium : data.image}
         />
       )}
-      <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
-        {data.year}/{data.month}
-      </h3>
-      <p className="timeline__desc">{data.header}</p>
+      {data.show_date && data.date ? (
+        <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
+          {data.date + '.' + data.month + '.' + data.year}
+        </h3>
+      ) : (
+        <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
+          {data.era ? data.era : data.month + '/' + data.year}
+        </h3>
+      )}
       <div className="timeline__text">{HTMLParse(data.teksti)}</div>
     </div>
   </div>
@@ -89,7 +95,9 @@ const Item = ({data}) => (
 const parseData = data => {
   let dataArray = [];
   for (let i = 0; i < data.length; i++) {
-    let {bucket, date, header, image, month, teksti, year} = data[i].acf;
+    let {bucket, show_date, date, header, image, month, teksti, year} = data[
+      i
+    ].acf;
     if (year && month && bucket && teksti)
       dataArray.push({
         ...data[i].acf,
@@ -111,6 +119,24 @@ function compare(a, b) {
   return 0;
 }
 
+const orderBuckets = bucketed => {
+  function compare(a, b) {
+    a = a[1][0];
+    b = b[1][0];
+    let aDateCombined = parseInt(a.year + a.month + a.date, 10);
+    let bDateCombined = parseInt(b.year + b.month + b.date, 10);
+    if (aDateCombined < bDateCombined) {
+      return -1;
+    }
+    if (aDateCombined > bDateCombined) {
+      return 1;
+    }
+    return 0;
+  }
+  const array = Object.entries(bucketed);
+  console.log(array);
+  return array.sort(compare);
+};
 class Timeline extends PureComponent {
   state = {visible: 0};
 
@@ -121,23 +147,33 @@ class Timeline extends PureComponent {
       'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
     const data = await fetchData(timelineDataUrl);
     const parsed = parseData(data);
-    console.log(parsed);
-    console.log(splitToBuckets(parsed));
+    const bucketed = splitToBuckets(parsed);
+    const ordered = orderBuckets(bucketed);
     this.setState({
-      data: splitToBuckets(parsed),
+      data: ordered,
     });
   }
 
   changeVisibility = i => this.setState({visible: i});
 
   render() {
-    if (!this.state.data) return null;
+    if (!this.state.data) return <h3>Pieni hetki. Ladataan...</h3>;
+
     return (
       <div>
         <div className="timeline-container" id="timeline-1">
           <div className="timeline">
+            <Helmet>
+              <title>P.E. Svinhufvudin uskomaton elämä</title>
+
+              <meta
+                name="description"
+                content="Aikajana Svinhufvudin värikkäästä elämästä"
+              />
+              <meta name="theme-color" content="#008f68" />
+            </Helmet>
             <Header />
-            {Object.entries(this.state.data).map((t, k) => {
+            {this.state.data.map((t, k) => {
               return (
                 <>
                   <SubHeader text={t[0]} />

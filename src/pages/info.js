@@ -197,11 +197,14 @@ Hallintoneuvosto voi muuttaa säätiön sääntöjä hallituksen ehdotuksesta, j
 Muutoin on noudatettava mitä säätiölaissa säädetään.
 `;
 
-const yleisesittely = url => `
+const HeaderData = `
 # P.E. Svinhufvudin muistosäätiö
-## P.E. Svinhufvuds minnesstiftelse
+### P.E. Svinhufvuds minnesstiftelse
 
-![alt text](${vaakuna}) 
+![alt text](${vaakuna})
+`;
+
+const yleisesittely = url => `
 
 Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin **Pehr Evind Svinhufvudin** nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
 
@@ -262,21 +265,27 @@ function Topic({match}) {
   );
 }
 
+const Header = () => (
+  <div>
+    <ReactMarkdown source={HeaderData} />
+  </div>
+);
+
 const Info = ({match}) => {
   return (
     <div className="info-container">
+      <Header />
       <div className="info-links">
-        <h3>
-          <Link to={`${match.url}/yleisesittely`}>Yleisesittely</Link>
-        </h3>
-        <h3>
-          <Link to={`${match.url}/saannot`}>Säännöt</Link>
-        </h3>
-        <h3>
-          <Link to={`${match.url}/hallintoelimet`}>Hallinto</Link>
-        </h3>
+        <Link to={`${match.url}/yleisesittely`}>
+          <h3>Yleisesittely</h3>
+        </Link>
+        <Link to={`${match.url}/saannot`}>
+          <h3>Säännöt</h3>
+        </Link>
+        <Link to={`${match.url}/hallintoelimet`}>
+          <h3>Hallinto</h3>
+        </Link>
       </div>
-
       <Route path={`${match.path}/:topicId`} component={Topic} />
       <Route
         exact

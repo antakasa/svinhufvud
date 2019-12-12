@@ -2,7 +2,7 @@
   "name": "2019_svinhufvud2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud2",
+  "homepage": "http://www.svinhufvudinmuistosaatio.fi/v-2",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
@@ -16,6 +16,7 @@
     "react": "^16.8.6",
     "react-device-detect": "^1.6.2",
     "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
     "react-image-timeline": "^1.0.11",
     "react-intersection-observer": "^8.23.0",
     "react-lazy-hero": "^2.0.0",
@@ -35,8 +36,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "postbuild": "react-snap",
-    "build": "PUBLIC_URL=http://lusi-dataviz.test.ylestatic.fi/2019_svinhufvud2 react-scripts build",
+    "postbuild": "PUBLIC_URL=/ react-snap",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy:test": "npm run build && npx dataviz-deploy generate --dir build && dataviz-deploy sync lusi-test $npm_package_name"
