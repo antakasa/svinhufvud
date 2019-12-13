@@ -36,6 +36,16 @@
   margin-top: 5px;
 }
 
+.timeline__content figure {
+  margin: 0;
+  cursor: pointer;
+}
+
+.timeline__content figcaption {
+  font-size: small;
+  text-align: center;
+}
+
 .timeline__text iframe,
 .timeline__text img {
   max-width: 90%;

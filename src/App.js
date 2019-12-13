@@ -1,11 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import './App.css';
-import PostList from './components/PostList';
 import Timeline from './components/timeline';
 import Layout from './components/layout';
 import FrontPageGrid from './components/frontPageGrid';
 import './mobilestyles.css';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  useLocation,
+  Route,
+  Link,
+  Switch,
+} from 'react-router-dom';
 import Hero from './components/hero';
 import Info from './pages/info';
 import Feature from './pages/feature';
@@ -15,6 +20,19 @@ const NoMatchPage = () => {
   return <h3>404 - Sivua ei löydy</h3>;
 };
 
+const ScrollToTop = () => {
+  const {pathname} = useLocation();
+
+  useEffect(
+    () => {
+      window.scrollTo(0, 0);
+    },
+    [pathname],
+  );
+
+  return null;
+};
+
 class App extends Component {
   render() {
     return (
@@ -22,7 +40,7 @@ class App extends Component {
         <Router basename={'/v-2'}>
           <div className="App">
             <Helmet>
-              <meta property="og:image" content={HeaderImage}></meta>
+              <meta property="og:image" content={HeaderImage} />
             </Helmet>
             <Hero />
             <Layout>
@@ -30,12 +48,14 @@ class App extends Component {
                 <Route
                   exact
                   path="/"
-                  render={() => <FrontPageGrid frontPage />}
+                  render={({location}) => <FrontPageGrid frontPage />}
                 />
                 <Route
                   exact
                   path="/feature"
-                  render={() => <FrontPageGrid featurePage />}
+                  render={({location}) => (
+                    <FrontPageGrid featurePage location={location} />
+                  )}
                 />
 
                 <Route path="/feature/:id" component={Feature} />

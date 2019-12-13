@@ -42,20 +42,24 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const frontPageContent = (
     <>
-      <Link {...linkProps} to="/uskomaton-elama">
+      <Link key={'a'} {...linkProps} to="/uskomaton-elama">
         <Item {...itemProps} src={uskomatonElama} />
       </Link>
-      <a {...linkProps} target="_blank" href="http://www.kotkaniemi.fi">
+      <a
+        key={'c'}
+        {...linkProps}
+        target="_blank"
+        href="http://www.kotkaniemi.fi">
         <Item {...itemProps} src={kk} />
       </a>
-      <Link {...linkProps} to="/info">
+      <Link key={'b'} {...linkProps} to="/info">
         <Item {...itemProps} src={perinto} />
       </Link>
-      <Link {...linkProps} to="/feature">
+      <Link key={'d'} {...linkProps} to="/feature">
         <Item {...itemProps} src={svinhufvudLakimiehena} />
       </Link>
 
-      <div style={{marginTop: '40px', width: '100%'}}>
+      <div key={'e'} style={{marginTop: '40px', width: '100%'}}>
         <Player playsInline poster={poster} src={video} />
       </div>
     </>
@@ -63,10 +67,10 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const featurePageContent = (
     <>
-      <Link {...linkProps} to="/feature/1161">
+      <Link key={'1'} {...linkProps} to="/feature/1161">
         <Item {...itemProps} src={pidatys} />
       </Link>
-      <Link {...linkProps} to="/feature/1135">
+      <Link key={'2'} {...linkProps} to="/feature/1135">
         <Item {...itemProps} src={oikeuslaitos} />
       </Link>
     </>
@@ -81,11 +85,19 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 };
 
 class Grid extends React.Component {
-  state = {open: false, imagesLoaded: 0};
+  constructor(props) {
+    super(props);
+    this.state = {open: false, imagesLoaded: 0};
+  }
   handleImageLoad = () => {
     if (this.state.imagesLoaded > 0) this.setState({open: true});
     else this.setState({imagesLoaded: this.state.imagesLoaded + 1});
   };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location !== this.props.location) {
+      this.setState({open: false});
+    }
+  }
 
   render() {
     return (

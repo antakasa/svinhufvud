@@ -205,6 +205,7 @@ const HeaderData = `
 `;
 
 const yleisesittely = url => `
+# Säätiö
 
 Suomen itsenäisyysjulistuksen ensimmäisen allekirjoittajan, eduskunnan ensimmäisen puhemiehen ja valtionhoitajan, tasavallan presidentin **Pehr Evind Svinhufvudin** nimeä kantava kaksikielinen säätiö syntyi 1950-luvun alkuvuosina.
 

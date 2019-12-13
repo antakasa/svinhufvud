@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component, PureComponent, useState} from 'react';
 import 'intersection-observer';
 import ScrollTrigger from 'react-scroll-trigger';
 import './timeline.css';
@@ -12,6 +12,9 @@ import {isMobile} from 'react-device-detect';
 import HTMLParse from 'html-react-parser';
 import Loading from './loading';
 import {Helmet} from 'react-helmet';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+import {LazyLoadImage} from 'react-lazy-load-image-component';
 const SubHeader = ({text}) => (
   <section className="timeline-subheader">
     <h2>{text}</h2>
@@ -69,28 +72,51 @@ const splitToBuckets = data =>
     return buckets;
   }, {});
 
-const Item = ({data}) => (
-  <div className={'timeline-item'} data-text={''}>
-    <div className="timeline__content">
-      {data.image && (
-        <img
-          className="timeline__img"
-          src={data.image.sizes ? data.image.sizes.medium : data.image}
-        />
-      )}
-      {data.show_date && data.date ? (
-        <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
-          {data.date + '.' + data.month + '.' + data.year}
-        </h3>
-      ) : (
-        <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
-          {data.era ? data.era : data.month + '/' + data.year}
-        </h3>
-      )}
-      <div className="timeline__text">{HTMLParse(data.teksti)}</div>
+const Item = ({data}) => {
+  const [isOpen, openImage] = useState(false);
+  console.log(data.image);
+  return (
+    <div className={'timeline-item'} data-text={''}>
+      <div className="timeline__content">
+        {data.image && (
+          <>
+            <figure>
+              <LazyLoadImage
+                width={'100%'}
+                height={'auto'}
+                alt={data.image.alt}
+                className="timeline__img"
+                onClick={() => openImage(true)}
+                effect="blur"
+                src={data.image.sizes ? data.image.sizes.thumbnail : data.image}
+              />
+
+              <figcaption>Klikkaamalla näet kuvan suurempana</figcaption>
+            </figure>
+            {isOpen && (
+              <Lightbox
+                mainSrc={
+                  data.image.sizes ? data.image.sizes.medium : data.image
+                }
+                onCloseRequest={() => openImage(false)}
+              />
+            )}
+          </>
+        )}
+        {data.show_date && data.date ? (
+          <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
+            {data.date + '.' + data.month + '.' + data.year}
+          </h3>
+        ) : (
+          <h3 style={{textAlign: 'left', margin: 0, marginTop: '10px'}}>
+            {data.era ? data.era : data.month + '/' + data.year}
+          </h3>
+        )}
+        <div className="timeline__text">{HTMLParse(data.teksti)}</div>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const parseData = data => {
   let dataArray = [];
@@ -177,9 +203,7 @@ class Timeline extends PureComponent {
               return (
                 <>
                   <SubHeader text={t[0]} />
-                  {t[1].map((e, i) => (
-                    <Item data={e} key={i} i={i} />
-                  ))}
+                  {t[1].map((e, i) => <Item data={e} key={i} i={i} />)}
                 </>
               );
             })}
