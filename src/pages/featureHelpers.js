@@ -1,26 +1,34 @@
-const determineImageClass = className => {
+const determineImageClass = (className, width, height) => {
+  // check if there is special class added in WP...
   if (className.indexOf('feature-vaaka') > -1) return 'feature-vaaka-container';
-  if (className.indexOf('feature-pysty-vasen') > -1)
+  else if (className.indexOf('feature-pysty-vasen') > -1)
     return 'feature-pysty-container vasen';
-  if (className.indexOf('feature-pysty-oikea') > -1)
+  else if (className.indexOf('feature-pysty-oikea') > -1)
     return 'feature-pysty-container oikea';
-  if (
+  else if (
     className.indexOf('feature-pysty-keskella') > -1 ||
     className.indexOf('feature-pysty') > -1
   )
     return 'feature-pysty-container keskella';
+  //... if not, determine from width & height
+  else if (width > height) return 'feature-vaaka-container';
+  else if (height > width) return 'feature-pysty-container keskella';
   else return false;
 };
 export const getImageDetails = domNode => {
-  const imgNode = domNode.children.filter(e =>
-    determineImageClass(e.attribs.class),
-  );
-  if (imgNode.length > 0 && imgNode[0].attribs)
+  const imgNode = domNode.children.filter(e => {
+    return e.name === 'img';
+  });
+  if (imgNode.length > 0 && imgNode[0].attribs) {
     return {
       ...imgNode[0].attribs,
-      mode: determineImageClass(imgNode[0].attribs.class),
+      mode: determineImageClass(
+        imgNode[0].attribs.class,
+        imgNode[0].attribs.width,
+        imgNode[0].attribs.height,
+      ),
     };
-  else return null;
+  } else return null;
 };
 
 export const getCaptionText = domNode => {
@@ -49,11 +57,7 @@ export const isValidImage = domNode => {
   const {children} = domNode;
   if (!children) return false;
   for (let i = 0; i < children.length; i++) {
-    if (
-      children[i].attribs &&
-      children[i].attribs.class &&
-      determineImageClass(children[i].attribs.class)
-    ) {
+    if (children[i].name === 'img') {
       return true;
     }
   }
