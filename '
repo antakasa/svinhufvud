@@ -16,7 +16,7 @@ import {
   isValidImage,
   WpCaption,
 } from './featureHelpers';
-import './eventsAndSpeeches.css';
+
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 const LazyImage = ({image, caption}) => (
@@ -34,28 +34,21 @@ const LazyImage = ({image, caption}) => (
   </div>
 );
 
-const Categories = ({item, categories}) => {
-  const array = item.categories.map(e => {
-    return categories.filter(s => e === s.id)[0].name.toUpperCase();
-  });
-  console.log(array);
-  return <b>{array.join(', ')}</b>;
-};
-
-const ListItems = () => {
+const ListItems = ({match}) => {
   const [data, setData] = useState(null);
-  const [categories, setCategories] = useState(null);
 
   let match = useRouteMatch();
+  const id = match.params.id;
   const tag = 13;
   const url =
     'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts?tag=' + tag;
-  const categoryUrl =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/categories';
   useEffect(() => {
-    fetchData(url, setData);
-    fetchData(categoryUrl, setCategories);
+    const data = fetchData(url, setData);
   }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, data);
 
   return (
     <div>
@@ -67,23 +60,13 @@ const ListItems = () => {
             <h1>Tilaisuudet ja puheet</h1>
             {data.map((e, i) => {
               return (
-                <div className="item" key={i}>
-                  {categories && (
-                    <small>
-                      {categories && (
-                        <Categories item={e} categories={categories} />
-                      )}
-                      {' | '}
-                      Julkaistu:{' '}
-                      <Moment format="DD.MM.YYYY" locale="fi">
-                        {e.date}
-                      </Moment>
-                    </small>
-                  )}
-                  <br />
-                  <Link to={`${match.path}/${e.id}`}>
-                    <b>{parse(e.title.rendered)}</b>
-                  </Link>{' '}
+                <div>
+                  <div key={i}>
+                    <Moment format="LLLL" locale="fi">
+                      {e.date}
+                    </Moment>:{' '}
+                    <Link to={`/${e.id}`}>{parse(e.title.rendered)}</Link>
+                  </div>
                 </div>
               );
             })}
@@ -128,7 +111,7 @@ export const Feature = () => {
         {data && (
           <>
             <h1>{parse(data.title.rendered)}</h1>
-            <h3 style={{fontSize: '1.1em'}}>{parse(data.excerpt.rendered)}</h3>
+            <h3>{parse(data.excerpt.rendered)}</h3>
             {data._embedded &&
               data._embedded['wp:featuredmedia'] &&
               data._embedded['wp:featuredmedia']['0'] && (

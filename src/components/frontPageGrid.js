@@ -35,13 +35,22 @@ const Item = ({src, handleImageLoad}) => (
     <img onLoad={handleImageLoad} src={src} />
   </ItemAnimated>
 );
-
 const Content = ({handleImageLoad, frontPage, featurePage}) => {
-  const linkProps = {className: 'frontpage-grid-item'};
+  const linkProps = {
+    className: frontPage ? 'grid-item frontpage' : 'grid-item',
+  };
   const itemProps = {handleImageLoad: handleImageLoad};
 
   const frontPageContent = (
     <>
+      <Link key={'ab'} {...linkProps} to="/tilaisuudet-ja-puheet">
+        <Item
+          {...itemProps}
+          src={
+            'https://via.placeholder.com/1600x500?text=tilaisuudet-ja-puheet'
+          }
+        />
+      </Link>
       <Link key={'a'} {...linkProps} to="/uskomaton-elama">
         <Item {...itemProps} src={uskomatonElama} />
       </Link>
@@ -104,7 +113,7 @@ class Grid extends React.Component {
       <>
         <Container
           pose={this.state.open ? 'open' : 'closed'}
-          className="frontpage-grid">
+          className={this.props.frontPage ? 'grid frontpage' : 'grid'}>
           <Content
             frontPage={this.props.frontPage}
             featurePage={this.props.featurePage}

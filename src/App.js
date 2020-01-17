@@ -59,7 +59,7 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path="/tilaisuudet-ja-puheet/:id"
+                  path="/tilaisuudet-ja-puheet"
                   component={EventsAndSpeeches}
                 />
                 <Route path="/feature/:id" component={Feature} />

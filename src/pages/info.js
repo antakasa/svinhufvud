@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './info.css';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  useRouteMatch,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
 import vaakuna from '../images/vaakuna.jpg';
-const ReactMarkdown = require('react-markdown');
+import Loading from '../components/loading';
+import {fetchData} from '../components/getData';
+import parse from 'html-react-parser';
 
+import {Helmet} from 'react-helmet';
 const hallintoelimet = url => `
 # Hallintoelimet
 
@@ -245,30 +254,55 @@ Maininkitie 16 D 55, 02320 Espoo
 
 `;
 
-//      <h3>{match.params.topicId}</h3>
+const Topic = () => {
+  let match = useRouteMatch();
+  const [data, setData] = useState(null);
+  const [title, setTitle] = useState(null);
+  const url = 'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/';
+  let id;
+  useEffect(
+    () => {
+      console.log('asd');
+      switch (match.params.topicId) {
+        case 'hallintoelimet':
+          id = '58';
+          setTitle('Hallintoelimet');
+          break;
+        case 'saannot':
+          id = '60';
+          setTitle('Säännöt');
+          break;
+        case 'vuosikertomukset':
+          id = '1818';
+          setTitle('Vuosikertomukset');
+          break;
+        default:
+          setTitle('Esittely');
+          id = '56';
+      }
+      fetchData(url + id, setData);
+    },
+    [data],
+  );
 
-function Topic({match}) {
-  let data;
-  switch (match.params.topicId) {
-    case 'hallintoelimet':
-      data = hallintoelimet;
-      break;
-    case 'saannot':
-      data = saannot;
-      break;
-    default:
-      data = yleisesittely;
-  }
+  if (!data) return <Loading />;
+
   return (
     <div>
-      <ReactMarkdown source={data(match.url)} />
+      <Helmet>
+        <title>P.E. Svinhufvudin muistosäätiö – {title} </title>
+      </Helmet>
+      {parse(data.content.rendered)}
     </div>
   );
-}
+};
 
 const Header = () => (
   <div>
-    <ReactMarkdown source={HeaderData} />
+    <h1> P.E. Svinhufvudin muistosäätiö</h1>
+    <h3>P.E. Svinhufvuds minnesstiftelse</h3>
+
+    <img src={vaakuna} alt="säätiön logo" />
   </div>
 );
 
@@ -286,13 +320,14 @@ const Info = ({match}) => {
         <Link to={`${match.url}/hallintoelimet`}>
           <h3>Hallinto</h3>
         </Link>
+        <Link to={`${match.url}/vuosikertomukset`}>
+          <h3>Vuosikertomukset</h3>
+        </Link>
       </div>
-      <Route path={`${match.path}/:topicId`} component={Topic} />
-      <Route
-        exact
-        path={match.path}
-        render={() => <ReactMarkdown source={yleisesittely(match.url)} />}
-      />
+      <Switch>
+        <Route path={`${match.path}/:topicId`} component={Topic} />
+        <Route path={`${match.path}/`} component={Topic} />
+      </Switch>
     </div>
   );
 };

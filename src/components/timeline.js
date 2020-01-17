@@ -26,6 +26,7 @@ const Header = () => (
     <h1 style={{marginBottom: '10px', textTransform: 'uppercase'}}>
       Pehr Evind Svinhufvudin uskomaton elämä
     </h1>
+    <h3>Ingressi Tutustu Svinhufvudin uskomattomaan elämään...</h3>
   </div>
 );
 
@@ -196,7 +197,6 @@ class Timeline extends PureComponent {
                 name="description"
                 content="Aikajana Svinhufvudin värikkäästä elämästä"
               />
-              <meta name="theme-color" content="#008f68" />
             </Helmet>
             <Header />
             {this.state.data.map((t, k) => {

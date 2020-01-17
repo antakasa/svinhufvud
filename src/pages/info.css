@@ -22,6 +22,7 @@
 
 .info-links {
   display: flex;
+  font-size: 14px;
   /* max-width: 500px; */
   justify-content: flex-start;
   text-transform: uppercase;
