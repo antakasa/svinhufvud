@@ -26,7 +26,28 @@ const Header = () => (
     <h1 style={{marginBottom: '10px', textTransform: 'uppercase'}}>
       Pehr Evind Svinhufvudin uskomaton elämä
     </h1>
-    <h3>Ingressi Tutustu Svinhufvudin uskomattomaan elämään...</h3>
+    <div className="ingressi">
+      <p>
+        P. E. Svinhufvud oli Venäjästä irtautumiseen johtaneen poliittisen
+        taistelun näkyvin hahmo.{' '}
+      </p>
+      <p>
+        Svinhufvud johti itsenäisyysjulistuksen antanutta ja vallankumouksen
+        kukistanutta senaattia ja hankki Saksan tuen puolustuksen
+        vahvistamiseksi. Pääministerinä ja presidenttinä hän johti 1930-luvulla
+        kommunisminvastaisten lakien säätämistä ja taltutti Mäntsälän kapinaksi
+        kärjistyneen oikeistoradikalismin sekä ohjasi Suomen ulkopolitiikan
+        pohjoismaisen yhteistyön tielle.{' '}
+      </p>{' '}
+      <p>
+        Vasemmistonvastaisen asenteensa vuoksi hänestä ei tullut koko kansan
+        presidenttiä, vaikka hän leppoisana "Ukko-Pekkana" nauttikin laajaa
+        suosiota.{' '}
+        <a href="https://kansallisbiografia.fi/kansallisbiografia/henkilo/501">
+          Lue lisää Kansallisbiografian sivulta.
+        </a>
+      </p>.
+    </div>
   </div>
 );
 

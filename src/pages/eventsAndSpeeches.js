@@ -47,9 +47,11 @@ const ListItems = () => {
   const [categories, setCategories] = useState(null);
 
   let match = useRouteMatch();
-  const tag = 13;
+  const tag = 14;
   const url =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts?tag=' + tag;
+    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts/?tags=' +
+    tag +
+    '&&per_page=100';
   const categoryUrl =
     'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/categories';
   useEffect(() => {
@@ -64,7 +66,7 @@ const ListItems = () => {
 
         {data && (
           <>
-            <h1>Tilaisuudet ja puheet</h1>
+            <h1>Esitelmät ja puheet</h1>
             {data.map((e, i) => {
               return (
                 <div className="item" key={i}>

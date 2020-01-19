@@ -3,15 +3,15 @@
     width: 90%;
   }
 
-  .frontpage-grid {
+  .grid {
     margin-top: 10vh;
   }
 
-  .frontpage-grid-item:first-child {
+  .grid-item:last-of-type.frontpage {
     width: 90%;
   }
 
-  .frontpage-grid-item:not(:first-child) {
+  .grid-item:not(:last-child).frontpage {
     width: 90%;
   }
 }

@@ -5,6 +5,7 @@ import kk from '../images/kiehtova_kotkaniemi.png';
 import perinto from '../images/perinto.png';
 import tapahtumat from '../images/tapahtumat.png';
 import uskomatonElama from '../images/uskomaton_elama.png';
+import esitelmat from '../images/esitelmat.png';
 import oikeuslaitos from '../images/oikeuslaitos.png';
 import pidatys from '../images/svinhufvudin_pidatys.png';
 import {Link} from 'react-router-dom';
@@ -43,14 +44,6 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
 
   const frontPageContent = (
     <>
-      <Link key={'ab'} {...linkProps} to="/tilaisuudet-ja-puheet">
-        <Item
-          {...itemProps}
-          src={
-            'https://via.placeholder.com/1600x500?text=tilaisuudet-ja-puheet'
-          }
-        />
-      </Link>
       <Link key={'a'} {...linkProps} to="/uskomaton-elama">
         <Item {...itemProps} src={uskomatonElama} />
       </Link>
@@ -67,7 +60,9 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
       <Link key={'d'} {...linkProps} to="/feature">
         <Item {...itemProps} src={svinhufvudLakimiehena} />
       </Link>
-
+      <Link key={'ab'} {...linkProps} to="/esitelmat-ja-puheet">
+        <Item {...itemProps} src={esitelmat} />
+      </Link>
       <div key={'e'} style={{marginTop: '40px', width: '100%'}}>
         <Player playsInline poster={poster} src={video} />
       </div>

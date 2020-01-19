@@ -16,14 +16,13 @@
   max-width: 800px;
 }
 
-.grid-item:first-child.frontpage {
-  width: 80%;
-}
-
-.grid-item:not(:first-child).frontpage {
+.grid-item:not(:last-child).frontpage {
   width: 40%;
 }
 
+.grid-item:last-of-type.frontpage {
+  width: 80%;
+}
 .grid-item img {
   width: 100%;
   height: 100%;

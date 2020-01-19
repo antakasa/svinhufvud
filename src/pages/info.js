@@ -272,7 +272,7 @@ const Topic = () => {
           id = '60';
           setTitle('Säännöt');
           break;
-        case 'vuosikertomukset':
+        case 'kirjallisuuspalkinto':
           id = '1818';
           setTitle('Vuosikertomukset');
           break;
@@ -320,8 +320,8 @@ const Info = ({match}) => {
         <Link to={`${match.url}/hallintoelimet`}>
           <h3>Hallinto</h3>
         </Link>
-        <Link to={`${match.url}/vuosikertomukset`}>
-          <h3>Vuosikertomukset</h3>
+        <Link to={`${match.url}/kirjallisuuspalkinto`}>
+          <h3>Kirjallisuuspalkinto</h3>
         </Link>
       </div>
       <Switch>
