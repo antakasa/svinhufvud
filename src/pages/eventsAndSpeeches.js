@@ -59,6 +59,8 @@ const ListItems = () => {
     fetchData(categoryUrl, setCategories);
   }, []);
 
+  const displayCategories = false; // put true if you want to display article categories
+
   return (
     <div>
       <div className="feature-container">
@@ -72,10 +74,10 @@ const ListItems = () => {
                 <div className="item" key={i}>
                   {categories && (
                     <small>
-                      {categories && (
-                        <Categories item={e} categories={categories} />
-                      )}
-                      {' | '}
+                      {categories &&
+                        displayCategories && (
+                          <Categories item={e} categories={categories} />
+                        )}
                       Julkaistu:{' '}
                       <Moment format="DD.MM.YYYY" locale="fi">
                         {e.date}
