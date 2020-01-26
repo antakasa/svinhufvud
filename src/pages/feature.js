@@ -41,7 +41,7 @@ export const Feature = ({match}) => {
   const id = match.params.id;
 
   const url =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/' + id;
+    '//www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/' + id;
   useEffect(() => {
     const data = fetchData(url, setData);
   }, []);

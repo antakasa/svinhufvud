@@ -51,7 +51,7 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
         key={'c'}
         {...linkProps}
         target="_blank"
-        href="http://www.kotkaniemi.fi">
+        href="//www.kotkaniemi.fi">
         <Item {...itemProps} src={kk} />
       </a>
       <Link key={'b'} {...linkProps} to="/info">

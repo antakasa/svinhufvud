@@ -192,7 +192,7 @@ class Timeline extends PureComponent {
 
   async componentDidMount() {
     const timelineDataUrl =
-      'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
+      '//www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
     const data = await fetchData(timelineDataUrl);
     const parsed = parseData(data);
     const bucketed = splitToBuckets(parsed);

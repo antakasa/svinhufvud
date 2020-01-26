@@ -49,11 +49,11 @@ const ListItems = () => {
   let match = useRouteMatch();
   const tag = 14;
   const url =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts/?tags=' +
+    '//www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts/?tags=' +
     tag +
     '&&per_page=100';
   const categoryUrl =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/categories';
+    '//www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/categories';
   useEffect(() => {
     fetchData(url, setData);
     fetchData(categoryUrl, setCategories);
@@ -109,7 +109,7 @@ export const Feature = () => {
   const id = match.params.id;
 
   const url =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts/' +
+    '//www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/posts/' +
     id +
     '?_embed';
   useEffect(() => {
