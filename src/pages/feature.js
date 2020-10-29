@@ -27,21 +27,21 @@ const LazyImage = ({image, caption}) => (
   </div>
 );
 
-const Routes = ({match}) => {
-  return (
-    <Router>
-      <Route path="/feature/:id" component={Feature} />
-    </Router>
-  );
-};
+//const Routes = ({match}) => {
+//return (
+//  <Router>
+//<Route path="/feature/:id" component={Feature} />
+//  </Router>
+// );
+//};
 
-const Feature = ({match}) => {
+export const Feature = ({match}) => {
   const [data, setData] = useState(null);
 
   const id = match.params.id;
 
   const url =
-    'http://www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/' + id;
+    '//www.svinhufvudinmuistosaatio.fi/wp-json/wp/v2/pages/' + id;
   useEffect(() => {
     const data = fetchData(url, setData);
   }, []);

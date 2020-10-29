@@ -1,10 +1,17 @@
 @media (max-width: 600px) {
-    .frontpage-grid-item {
-        width: 90%;
-    }
+  .frontpage-grid-item {
+    width: 90%;
+  }
 
-    .frontpage-grid {
-        margin-top: 10vh;
+  .grid {
+    margin-top: 10vh;
+  }
 
-    }
+  .grid-item:last-of-type.frontpage {
+    width: 90%;
+  }
+
+  .grid-item:not(:last-child).frontpage {
+    width: 90%;
+  }
 }

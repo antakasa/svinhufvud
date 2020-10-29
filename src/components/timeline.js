@@ -26,6 +26,28 @@ const Header = () => (
     <h1 style={{marginBottom: '10px', textTransform: 'uppercase'}}>
       Pehr Evind Svinhufvudin uskomaton elämä
     </h1>
+    <div className="ingressi">
+      <p>
+        P. E. Svinhufvud oli Venäjästä irtautumiseen johtaneen poliittisen
+        taistelun näkyvin hahmo.{' '}
+      </p>
+      <p>
+        Svinhufvud johti itsenäisyysjulistuksen antanutta ja vallankumouksen
+        kukistanutta senaattia ja hankki Saksan tuen puolustuksen
+        vahvistamiseksi. Pääministerinä ja presidenttinä hän johti 1930-luvulla
+        kommunisminvastaisten lakien säätämistä ja taltutti Mäntsälän kapinaksi
+        kärjistyneen oikeistoradikalismin sekä ohjasi Suomen ulkopolitiikan
+        pohjoismaisen yhteistyön tielle.{' '}
+      </p>{' '}
+      <p>
+        Vasemmistonvastaisen asenteensa vuoksi hänestä ei tullut koko kansan
+        presidenttiä, vaikka hän leppoisana "Ukko-Pekkana" nauttikin laajaa
+        suosiota.{' '}
+        <a href="https://kansallisbiografia.fi/kansallisbiografia/henkilo/501">
+          Lue lisää Kansallisbiografian sivulta.
+        </a>
+      </p>.
+    </div>
   </div>
 );
 
@@ -170,7 +192,7 @@ class Timeline extends PureComponent {
 
   async componentDidMount() {
     const timelineDataUrl =
-      'http://www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
+      '//www.svinhufvudinmuistosaatio.fi/wp-json/acf/v3/pages/?per_page=130';
     const data = await fetchData(timelineDataUrl);
     const parsed = parseData(data);
     const bucketed = splitToBuckets(parsed);
@@ -196,7 +218,6 @@ class Timeline extends PureComponent {
                 name="description"
                 content="Aikajana Svinhufvudin värikkäästä elämästä"
               />
-              <meta name="theme-color" content="#008f68" />
             </Helmet>
             <Header />
             {this.state.data.map((t, k) => {

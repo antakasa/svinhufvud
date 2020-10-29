@@ -1,22 +1,29 @@
-.frontpage-grid {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: -25vh;
-    cursor: pointer;
-    padding-bottom: 10vh;
-    justify-content: center;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+.grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -25vh;
+  cursor: pointer;
+  padding-bottom: 10vh;
+  justify-content: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.frontpage-grid-item {
-    width: 45%;
-    max-width: 800px;
+.grid-item {
+  width: 45%;
+  max-width: 800px;
 }
 
-.frontpage-grid-item img {
-    width: 100%;
-    height: 100%;
+.grid-item:not(:last-child).frontpage {
+  width: 40%;
+}
+
+.grid-item:last-of-type.frontpage {
+  width: 80%;
+}
+.grid-item img {
+  width: 100%;
+  height: 100%;
 }

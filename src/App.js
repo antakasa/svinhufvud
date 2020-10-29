@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom';
 import Hero from './components/hero';
 import Info from './pages/info';
+import EventsAndSpeeches from './pages/eventsAndSpeeches.js';
 import Feature from './pages/feature';
 import {Helmet} from 'react-helmet';
 import HeaderImage from './images/header.jpg';
@@ -57,7 +58,10 @@ class App extends Component {
                     <FrontPageGrid featurePage location={location} />
                   )}
                 />
-
+                <Route
+                  path="/esitelmat-ja-puheet"
+                  component={EventsAndSpeeches}
+                />
                 <Route path="/feature/:id" component={Feature} />
                 <Route path="/info" component={Info} />
                 <Route path="/uskomaton-elama" component={Timeline} />

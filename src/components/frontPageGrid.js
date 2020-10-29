@@ -5,6 +5,7 @@ import kk from '../images/kiehtova_kotkaniemi.png';
 import perinto from '../images/perinto.png';
 import tapahtumat from '../images/tapahtumat.png';
 import uskomatonElama from '../images/uskomaton_elama.png';
+import esitelmat from '../images/esitelmat.png';
 import oikeuslaitos from '../images/oikeuslaitos.png';
 import pidatys from '../images/svinhufvudin_pidatys.png';
 import {Link} from 'react-router-dom';
@@ -35,9 +36,10 @@ const Item = ({src, handleImageLoad}) => (
     <img onLoad={handleImageLoad} src={src} />
   </ItemAnimated>
 );
-
 const Content = ({handleImageLoad, frontPage, featurePage}) => {
-  const linkProps = {className: 'frontpage-grid-item'};
+  const linkProps = {
+    className: frontPage ? 'grid-item frontpage' : 'grid-item',
+  };
   const itemProps = {handleImageLoad: handleImageLoad};
 
   const frontPageContent = (
@@ -49,7 +51,7 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
         key={'c'}
         {...linkProps}
         target="_blank"
-        href="http://www.kotkaniemi.fi">
+        href="//www.kotkaniemi.fi">
         <Item {...itemProps} src={kk} />
       </a>
       <Link key={'b'} {...linkProps} to="/info">
@@ -58,7 +60,9 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
       <Link key={'d'} {...linkProps} to="/feature">
         <Item {...itemProps} src={svinhufvudLakimiehena} />
       </Link>
-
+      <Link key={'ab'} {...linkProps} to="/esitelmat-ja-puheet">
+        <Item {...itemProps} src={esitelmat} />
+      </Link>
       <div key={'e'} style={{marginTop: '40px', width: '100%'}}>
         <Player playsInline poster={poster} src={video} />
       </div>
@@ -104,7 +108,7 @@ class Grid extends React.Component {
       <>
         <Container
           pose={this.state.open ? 'open' : 'closed'}
-          className="frontpage-grid">
+          className={this.props.frontPage ? 'grid frontpage' : 'grid'}>
           <Content
             frontPage={this.props.frontPage}
             featurePage={this.props.featurePage}

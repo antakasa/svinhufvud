@@ -170,3 +170,10 @@
   position: relative;
   padding-left: 0;
 }
+
+.timeline-header .ingressi {
+  margin-top: 50px;
+  font-size: 1em;
+  text-align: left;
+  font-weight: normal;
+}
