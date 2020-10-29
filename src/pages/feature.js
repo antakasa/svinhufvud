@@ -11,6 +11,7 @@ import {
 } from './featureHelpers';
 import FrontPageGrid from '../components/frontPageGrid';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import DOMPurify from 'dompurify'
 
 const LazyImage = ({image, caption}) => (
   <div className={image.mode}>
@@ -61,9 +62,9 @@ export const Feature = ({match}) => {
 
         {data && (
           <>
-            <h1>{parse(data.title.rendered)}</h1>
+            <h1>{parse(DOMPurify.sanitize(data.title.rendered))}</h1>
             <div>
-              {parse(data.content.rendered.replace(/\s/g, ' '), {
+              {parse(DOMPurify.sanitize(data.content.rendered.replace(/\s/g, ' ')), {
                 replace: replaceImages,
               })}
             </div>

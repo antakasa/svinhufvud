@@ -11,6 +11,7 @@ import vaakuna from '../images/vaakuna.jpg';
 import Loading from '../components/loading';
 import {fetchData} from '../components/getData';
 import parse from 'html-react-parser';
+import DOMPurify from "dompurify"
 
 import {Helmet} from 'react-helmet';
 const hallintoelimet = url => `
@@ -292,7 +293,7 @@ const Topic = () => {
       <Helmet>
         <title>P.E. Svinhufvudin muistosäätiö – {title} </title>
       </Helmet>
-      {parse(data.content.rendered)}
+      {parse(DOMPurify.sanitize(data.content.rendered))}
     </div>
   );
 };

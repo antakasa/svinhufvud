@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import {fetchData} from '../components/getData';
 import parse from 'html-react-parser';
 import Moment from 'react-moment';
+import DOMPurify from "dompurify"
 import {
   BrowserRouter as Router,
   useRouteMatch,
@@ -86,7 +87,7 @@ const ListItems = () => {
                   )}
                   <br />
                   <Link to={`${match.path}/${e.id}`}>
-                    <b>{parse(e.title.rendered)}</b>
+                    <b>{parse(DOMPurify.sanitize(e.title.rendered))}</b>
                   </Link>{' '}
                 </div>
               );
@@ -131,8 +132,8 @@ export const Feature = () => {
 
         {data && (
           <>
-            <h1>{parse(data.title.rendered)}</h1>
-            <h3 style={{fontSize: '1.1em'}}>{parse(data.excerpt.rendered)}</h3>
+            <h1>{parse(DOMPurify.sanitize(data.title.rendered))}</h1>
+            <h3 style={{fontSize: '1.1em'}}>{parse(DOMPurify.sanitize(data.excerpt.rendered))}</h3>
             {data._embedded &&
               data._embedded['wp:featuredmedia'] &&
               data._embedded['wp:featuredmedia']['0'] && (
@@ -142,7 +143,7 @@ export const Feature = () => {
                 />
               )}
             <div>
-              {parse(data.content.rendered.replace(/\s/g, ' '), {
+              {parse(DOMPurify.sanitize(data.content.rendered.replace(/\s/g, ' ')), {
                 replace: replaceImages,
               })}
             </div>

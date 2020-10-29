@@ -23,6 +23,11 @@
 .grid-item:last-of-type.frontpage {
   width: 80%;
 }
+
+.grid-item:nth-last-of-type(2).frontpage {
+  width: 80%;
+}
+
 .grid-item img {
   width: 100%;
   height: 100%;

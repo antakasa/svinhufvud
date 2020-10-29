@@ -4,7 +4,7 @@
     font-weight: bold;
     margin-top: 50px;
     margin-bottom: 10px;
-
+    transform: translateY(-20px); 
 }
 
 .contact-info p {

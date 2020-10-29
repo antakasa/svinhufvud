@@ -6,6 +6,8 @@ import perinto from '../images/perinto.png';
 import tapahtumat from '../images/tapahtumat.png';
 import uskomatonElama from '../images/uskomaton_elama.png';
 import esitelmat from '../images/esitelmat.png';
+import mathilda from "../images/mathilda.png";
+import perintoVaaka from "../images/vaalimme_nosto.png";
 import oikeuslaitos from '../images/oikeuslaitos.png';
 import pidatys from '../images/svinhufvudin_pidatys.png';
 import {Link} from 'react-router-dom';
@@ -54,14 +56,17 @@ const Content = ({handleImageLoad, frontPage, featurePage}) => {
         href="//www.kotkaniemi.fi">
         <Item {...itemProps} src={kk} />
       </a>
-      <Link key={'b'} {...linkProps} to="/info">
-        <Item {...itemProps} src={perinto} />
-      </Link>
       <Link key={'d'} {...linkProps} to="/feature">
         <Item {...itemProps} src={svinhufvudLakimiehena} />
       </Link>
+      <Link key={'b'} {...linkProps} to="/feature/1906">
+        <Item {...itemProps} src={mathilda} />
+      </Link>
       <Link key={'ab'} {...linkProps} to="/esitelmat-ja-puheet">
         <Item {...itemProps} src={esitelmat} />
+      </Link>
+      <Link key={'ab'} {...linkProps} to="/info">
+        <Item {...itemProps} src={perintoVaaka} />
       </Link>
       <div key={'e'} style={{marginTop: '40px', width: '100%'}}>
         <Player playsInline poster={poster} src={video} />
